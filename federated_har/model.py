@@ -5,9 +5,13 @@ __all__ = ['create_model', 'train', 'test']
 
 # %% ../nbs/Model.ipynb 2
 import torch
-from torchvision.models.video import swin3d_s, Swin3D_S_Weights
+from torchvision.models.video import swin3d_t, Swin3D_T_Weights
 from torch import nn
-import matplotlib.pyplot as plt
+
+import sys
+sys.path.append('..')
+
+from .datasets import *
 
 # %% ../nbs/Model.ipynb 11
 def create_model(num_out):
@@ -20,7 +24,7 @@ def create_model(num_out):
     Returns: 
         Swin3D transformer Small Pytorch model
     """
-    model = swin3d_s(weights=Swin3D_S_Weights.DEFAULT)
+    model = swin3d_t(weights=Swin3D_T_Weights.DEFAULT)
     for param in model.parameters():
         param.requires_grad = False
 
